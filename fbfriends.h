@@ -13,35 +13,39 @@
 #ifndef FBFRIENDS_H
 #define FBFRIENDS_H
 
-class FBFriends{
+class FBFriends
+{
     public:
-	FBFriends();
 
-	//The functions known as the Big 3
-	~FBFriends();
-	FBFriends(const FBFriends& other);
-	void operator = (const FBFriends& other);
+		FBFriends();
 
-	// Functions for the internal iterator
-	void start();
-	void advance();
-	bool is_item();
-	Friend current();
-	void remove_current();
-	void insert(const Friend& f);
-	void attach(const Friend& f);
-	void show_all(std::ostream& outs)const;
-	void bday_sort();
-	Friend find_friend(const std::string& name)const;
-	bool is_friend(const Friend& f) const;
-	void load(std::istream& ins);
-	void save(std::ostream& outs);
-    private:
-	void resize(); // increases the capacity of the container by 5
-	Friend *data;
-	int used;
-	int capacity;
-	int current_index;
+		//The functions known as the Big 3
+		~FBFriends();
+		FBFriends(const FBFriends& other);
+		void operator = (const FBFriends& other);
+
+		// Functions for the internal iterator
+		void start();
+		void advance();
+		bool is_item();
+		Friend current();
+		void remove_current();
+		void insert(const Friend& f);
+		void attach(const Friend& f);
+		void show_all(std::ostream& outs)const;
+		void bday_sort();
+		Friend find_friend(const std::string& name)const;
+		bool is_friend(const Friend& f) const;
+		void load(std::istream& ins);
+		void save(std::ostream& outs);
+
+	private:
+	
+		void resize(); // increases the capacity of the container by 5
+		Friend *data;
+		int used;
+		int capacity;
+		int current_index;
 };
 
 #endif

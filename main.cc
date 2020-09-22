@@ -13,10 +13,10 @@
 **************************************************************/
     
 
-#include<iostream>
-#include<fstream>
-#include<cstdlib>
-#include<string>
+#include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <string>
 #include "friend.h"
 #include "fbfriends.h"
 using namespace std;
@@ -24,7 +24,8 @@ using namespace std;
 int menu();
 int menu2();
 
-int main(){
+int main()
+{
 
     Friend myfriend;
     FBFriends myfb;
@@ -35,47 +36,82 @@ int main(){
     ofstream fout;
     bool cutout;
 
-	cout<<"Welcome to Friends Management.\n\n";
-	cout<<"Begin by entering your username: ";
+	cout << "-Welcome to Friends Management. " << endl; << endl;
+	cout << "-Begin by entering your username: ";
 	getline(cin,username);
+	
 	filename = username + ".txt";
 	fin.open(filename.c_str());
-    if(!fin.fail())
-	myfb.load(fin);
+    
+	if(!fin.fail())
+	{
+		myfb.load(fin);
+	}
 	fin.close();
+	
 	choice = 0;
 	choice2 = 0;
 	cutout = false;
         FBFriends original(myfb);
 
-	while(choice != 9){
-	    choice = menu();
-	    switch(choice){
-		case 1:	cin>>myfriend;
-		       	myfb.start();
-			myfb.insert(myfriend);
-			break;
-		case 2: myfb.show_all(cout);
-			break;
-		case 3: {myfb.start();
-			choice2 = 0;
-			while(myfb.is_item()&& choice2 <= 5){
-			    cout<<myfb.current();
-			    choice2 = menu2();
-			    if(choice2 == 1)
-				myfb.remove_current();
-			    else if(choice2 == 2){
-				if(!cutout)
-				cin>>myfriend;
-				if(myfb.is_friend(myfriend)) 
-				cout<<"Already in list.\n";
-				else
-				myfb.insert(myfriend);
-				cutout = false;
-			    }
-			    else if(choice2 == 3){
-				if(!cutout)
+	while(choice != 9)
+	{
+		choice = menu();
+
+	    switch(choice)
+		{
+			case 1:
+
 				cin >> myfriend;
+		    	myfb.start();
+				myfb.insert(myfriend);
+				break;
+
+			case 2:
+
+				myfb.show_all(cout);
+				break;
+
+			case 3: 
+			{
+				myfb.start();
+				choice2 = 0;
+
+				while(myfb.is_item()&& choice2 <= 5)
+				{
+			    	cout << myfb.current();
+			    	choice2 = menu2();
+
+			    	if(choice2 == 1)
+					{
+						myfb.remove_current();
+
+			    	}else if(choice2 == 2){
+
+						if(!cutout)
+						{
+							cin>>myfriend;
+						}
+
+						if(myfb.is_friend(myfriend))
+						{
+
+							cout<<"Already in list.\n";
+
+						}else{
+
+							myfb.insert(myfriend);
+							cutout = false;
+						}
+					}
+			    
+
+			    	else if(choice2 == 3)
+					{
+
+						if(!cutout)
+						{
+							cin >> myfriend;
                                if(myfb.is_friend(myfriend))
                                 cout<<"Already in list.\n";
                                 else
