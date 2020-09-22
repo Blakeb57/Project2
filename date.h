@@ -79,10 +79,10 @@ class Date
 		Date(int d, int m, int y);
 
     	// outputs the date
-		friend std::ostream& operator <<(std::ostream& outs, Date d);
+		friend std::ostream& operator << (std::ostream& outs, Date d);
 
     	//inputs the date
-		friend std::istream& operator >>(std::istream& ins, Date& d);
+		friend std::istream& operator >> (std::istream& ins, Date& d);
 
 /**************************************************
         COMPARSION OPERATORS

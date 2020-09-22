@@ -12,7 +12,7 @@ using namespace std;
 // default constructor
 Date::Date()
 {
-	day=month=year=1;         
+	day = month = year = 1;         
     // permissable days for each month are loaded into an array
 	daysallowed[0] = 0;
     daysallowed[1] = 31;
@@ -26,12 +26,12 @@ Date::Date()
 	daysallowed[9] = 30;
 	daysallowed[10] = 31;
 	daysallowed[11] = 30;
-	daysallowed[12] = 31;}
+	daysallowed[12] = 31;
+}
 
 // constructor that takes three arguments
-Date::Date(int d,int m, int y):day(d),month(m),year(y)
+Date::Date(int d, int m, int y):day(d), month(m), year(y)
 {
-
     // permissable days for each month are loaded into an array
 	daysallowed[0] = 0;
 	daysallowed[1] = 31;
@@ -45,17 +45,18 @@ Date::Date(int d,int m, int y):day(d),month(m),year(y)
 	daysallowed[9] = 30;
 	daysallowed[10] = 31;
 	daysallowed[11] = 30;
-	daysallowed[12] = 31;}
+	daysallowed[12] = 31;
+}
 
 // output operator, overloaded as a friend function
-ostream& operator <<(ostream& outs, Date d)
+ostream& operator << (ostream& outs, Date d)
 {
     outs << d.month << '/' << d.day << '/' << d.year;
     return outs;
 }
 
 // input operator, overloaded as a friend
-istream& operator >>(istream& ins, Date& d)
+istream& operator >> (istream& ins, Date& d)
 {
    bool flag = false;
    string junk;
@@ -113,7 +114,7 @@ bool operator > (const Date& d1, const Date& d2)
 	  return(d1.month > d2.month);
 
 	}else{
-		
+
 		return (d1.day > d2.day);
 	}
 }
