@@ -6,10 +6,13 @@
    Because it uses dynamic memory it needs to have the Big3.
      John Dolan		Spring 2014	Ohio University
 *********************************************************/
+#include<ctime>
+#include <iostream>
+#include <string>
+#include <fstream>
 #include<iostream>
-#include<string>
-#include<fstream>
 #include "friend.h"
+using namespace std;
 #ifndef FBFRIENDS_H
 #define FBFRIENDS_H
 
@@ -40,12 +43,12 @@ class FBFriends
 		void save(std::ostream& outs);
 
 	private:
-	
 		void resize(); // increases the capacity of the container by 5
 		Friend *data;
 		int used;
 		int capacity;
 		int current_index;
 };
+
 
 #endif

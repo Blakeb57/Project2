@@ -16,6 +16,10 @@
 
 #include <iostream>
 #include <ctype.h>
+#include <fstream>
+#include <cstdlib>
+#include <string>
+
 
 #ifndef DATE
 #define DATE
@@ -24,23 +28,13 @@ class bad_day
 {
     public:
 
-		bad_day()
-		{
-			monthnum = daynum = 0;
-		}
+		bad_day(){monthnum = daynum = 0;}
 
-		bad_day(int m, int d)
-		{
-			monthnum = m, daynum = d;
-		}
+		bad_day(int m, int d){monthnum = m, daynum = d;}
 
-		void msg()
-		{
-			std::cerr << monthnum << " has no day " << daynum << std::endl;
-		}
+		void msg(){std::cerr << monthnum << " has no day " << daynum << std::endl;}
 
     private:
-
 		int monthnum, daynum;
 };
 
@@ -49,23 +43,13 @@ class bad_month
 {
     public:
 
-		bad_month()
-		{
-			monthnum = 0;
-		}
+		bad_month(){monthnum = 0;}
 
-		bad_month(int m)
-		{
-			monthnum = m;
-		}
+		bad_month(int m){monthnum = m;}
 
-		void msg()
-		{
-			std::cerr << monthnum << " is an invalid month number. " << endl;
-		}
+		void msg(){std::cerr << monthnum << " is an invalid month number. \n";}
 
     private:
-
 		int monthnum;
 };
 
@@ -96,7 +80,6 @@ class Date
 
 
 	private:
-
 		int day;
 		int month;
 		int year;

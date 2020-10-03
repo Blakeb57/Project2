@@ -22,23 +22,32 @@
 using namespace std;
 
 int menu();
-int menu2();
+//int menu2();
 
 int main()
 {
 
-    Friend myfriend;
-    FBFriends myfb;
-    string friendname;
-    int choice,choice2;
-    string username, filename;
+	//Friend myfriend;
+   	FBFriends myfb;
+	//Date mydate;
+    //string friendname;
+    //int choice,choice2;
+    //string username, filename;
     ifstream fin;
     ofstream fout;
-    bool cutout;
+    //bool cutout;
+	fin.open("rplant.txt");
+	cout << menu();
 
+	if(!fin.fail())
+	{
+		myfb.load(fin);
+		fin.close();
+	}
+	/*
 	cout << "-Welcome to Friends Management. " << endl << endl;
 	cout << "-Begin by entering your username: ";
-	getline(cin,username);
+	getline(cin, username);
 	
 	filename = username + ".txt";
 	fin.open(filename.c_str());
@@ -175,6 +184,7 @@ int main()
 	cout << "Come visit your friends again soon. " << endl;
 
 	return 0;
+	*/
 }
 	
 int menu()
@@ -193,6 +203,7 @@ int menu()
     return ans;
 }
 
+/*
 int menu2()
 {
 	int ans;
@@ -208,3 +219,4 @@ int menu2()
 
     return ans;
 }
+*/

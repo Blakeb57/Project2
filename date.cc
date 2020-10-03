@@ -5,11 +5,15 @@
 	John Dolan			September 2005
 		OHIO UNIVERSITY SCHOOL OF EECS
 *************************************************************************/
-
+#include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <string>
 #include "date.h"
 
 using namespace std;
 // default constructor
+
 Date::Date()
 {
 	day = month = year = 1;         

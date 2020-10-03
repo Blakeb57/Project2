@@ -10,6 +10,7 @@
 #include<iostream>
 #include<string>
 #include "date.h"
+using namespace std;
 #ifndef FRIEND_H
 #define FRIEND_H
 
@@ -19,6 +20,9 @@ class Friend
     public:
 	
 		Friend();
+
+		void set_name(const std::string& sn);
+		
 		std::string get_name()const;
 		Date get_bday()const;
 		bool operator == (const Friend& other)const;
@@ -27,12 +31,11 @@ class Friend
 		void output(std::ostream& outs)const;
 
 	private:
-	
 		std::string name;
 		Date bday;
 };
 
-std::istream& operator >>(std::istream& ins,Friend& f);
-std::ostream& operator <<(std::ostream& outs,const Friend& f);
+std::istream& operator >> (std::istream& ins,Friend& f);
+std::ostream& operator << (std::ostream& outs,const Friend& f);
 
 #endif
