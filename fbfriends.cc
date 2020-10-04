@@ -17,7 +17,22 @@ FBFriends::~FBFriends()
 
 FBFriends::FBFriends(const FBFriends& other)
 {
+    Friend *new_data;
+    if(this == &other)
+    {
+        return;
+    }
 
+    if(capacity != other.capacity)
+    {
+        new_data = new Friend[other.capacity];
+        delete [] data;
+        data = new_data;
+        capacity = other.capacity;
+    }
+
+    used = other.used;
+    copy(other.data, other.data + used, data);
 }
 
 void FBFriends::operator = (const FBFriends& other)
@@ -25,17 +40,17 @@ void FBFriends::operator = (const FBFriends& other)
 
 }
 
-void FBFriends::start()
+void FBFriends::start() 
 {
 
 }
 
-void FBFriends::advance();
+void FBFriends::advance()
 {
 
 }
 
-bool FBFrieends::is_item()
+bool FBFriends::is_item()
 {
 
 }
@@ -67,7 +82,7 @@ void FBFriends::show_all(std::ostream& outs)const
 {
     for(int i = 0; i < used; ++i)
     {
-        outs << Friend *data << endl;
+
     }
     
 }
@@ -82,11 +97,7 @@ Friend FBFriends::find_friend(const std::string& name)const
     Friend myfriend;
     for(int i = 0; i < used; ++i)
     {
-        if(name == Friend *data.get_name())
-        {
-            cout << Friend *data:
-            //return Friend *data;
-        }
+
     }
     cout << "-Friend could not be found. " << endl;
     return myfriend;
@@ -103,8 +114,9 @@ void FBFriends::load(std::istream& ins)
     Friend myfriend;
     while(!ins.eof())
     {
-        myfriend.input(ins);        //finsih inside of the while loop
-
+        myfriend.input(ins);        
+        data[used] = myfriend;
+        used++;
     }
 }
 

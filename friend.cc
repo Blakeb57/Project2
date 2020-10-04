@@ -16,27 +16,27 @@ void Friend::set_name(const std::string& sn)
     this->name = sn;
 }
 
-std::string get_name()const
+std::string Friend::get_name()const
 {
-    return name;
+    return this->name;
 }
 
 
 Date Friend::get_bday()const
 {
-    return Date;
+    return this->bday;
 }
 
 
 bool Friend::operator == (const Friend& other)const
 {
-    return 1;
+    return (*this == other);
 }
 
 
 bool Friend::operator != (const Friend& other)const
 {
-    return 1;
+    return !(*this == other);
 }
 
 
@@ -45,13 +45,12 @@ void Friend::input(std::istream& ins)
     string line;
 
     getline(ins, line);
-        set_name(line);
+        this->name = line;
 
-    return ins;
 }
 
 
-void Friend::output(std::ostream& outs)
+void Friend::output(std::ostream& outs)const
 {
     outs << get_name() << endl;
     outs << get_bday() << endl;
@@ -60,7 +59,7 @@ void Friend::output(std::ostream& outs)
 
 std::istream& operator >> (std::istream& ins, Friend& f)
 {
-    string line
+    string line;
 
     cout << "-Please enter in friend's name: ";
     getline(ins, line);
@@ -70,7 +69,7 @@ std::istream& operator >> (std::istream& ins, Friend& f)
 }
 
 
-std::ostream& operator << (std::ostream& outs, const Friends& f)
+std::ostream& operator << (std::ostream& outs, const Friend& f)
 {
     outs << f.get_name() << endl;
     outs << f.get_bday() << endl;

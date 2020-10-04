@@ -18,11 +18,8 @@ using namespace std;
 class Friend
 {
     public:
-	
 		Friend();
-
 		void set_name(const std::string& sn);
-		
 		std::string get_name()const;
 		Date get_bday()const;
 		bool operator == (const Friend& other)const;
