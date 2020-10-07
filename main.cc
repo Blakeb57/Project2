@@ -22,29 +22,21 @@
 using namespace std;
 
 int menu();
-//int menu2();
+int menu2();
 
 int main()
 {
 
-	//Friend myfriend;
+	Friend myfriend;
    	FBFriends myfb;
-	//Date mydate;
-    //string friendname;
-    //int choice,choice2;
-    //string username, filename;
+	Date mydate;
+    string friendname;
+    int choice,choice2;
+    string username, filename;
     ifstream fin;
     ofstream fout;
-    //bool cutout;
-	fin.open("rplant.txt");
-	cout << menu();
-
-	if(!fin.fail())
-	{
-		myfb.load(fin);
-		fin.close();
-	}
-	/*
+    bool cutout;
+	
 	cout << "-Welcome to Friends Management. " << endl << endl;
 	cout << "-Begin by entering your username: ";
 	getline(cin, username);
@@ -52,12 +44,14 @@ int main()
 	filename = username + ".txt";
 	fin.open(filename.c_str());
     
+	
 	if(!fin.fail())
 	{
 		myfb.load(fin);
 	}
-	fin.close();
 	
+	fin.close();
+
 	choice = 0;
 	choice2 = 0;
 	cutout = false;
@@ -66,7 +60,6 @@ int main()
 	while(choice != 9)
 	{
 		choice = menu();
-
 	    switch(choice)
 		{
 			case 1:
@@ -90,7 +83,7 @@ int main()
 
 			    	if(choice2 == 1)
 					{
-						myfb.remove_current();
+						myfb.remove_current(myfriend);
 
 			    	}else if(choice2 == 2){
 
@@ -130,7 +123,7 @@ int main()
 					}else if (choice2 == 4){
 
 						myfriend = myfb.current();
-						myfb.remove_current();
+						myfb.remove_current(myfriend);
 						cutout = true;
 
 					}else if(choice2 == 5){
@@ -169,7 +162,7 @@ int main()
 		} // bottom of the switch
 
 	} // bottom of the while
-
+	
 	fout.open(filename.c_str());
 
     if(!fout.fail())
@@ -181,14 +174,16 @@ int main()
 		cout << "Unable to save data. " << endl;
 	}
 	fout.close();
+	
 	cout << "Come visit your friends again soon. " << endl;
 
 	return 0;
-	*/
+	
 }
 	
 int menu()
 {
+	string c;
 	int ans;
 	cout << "Choose from the options below: " << endl;
 	cout << "1 - Add a friend to the beginning of the list. " << endl;
@@ -198,12 +193,12 @@ int menu()
 	cout << "5 - Find a friend so you can learn when they were born. " << endl;
 	cout << "6 - See the list you started with in today's session. " << endl;
 	cout << "9 - Leave the program. " << endl;
-	cin >> ans;
+	cin >> c;
 
-    return ans;
+    return std::stoi(c);
 }
 
-/*
+
 int menu2()
 {
 	int ans;
@@ -219,4 +214,3 @@ int menu2()
 
     return ans;
 }
-*/

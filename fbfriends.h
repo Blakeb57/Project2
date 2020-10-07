@@ -20,11 +20,11 @@ class FBFriends
 {
     public:
 
-		FBFriends();
+		FBFriends();													//done
 
 		//The functions known as the Big 3
-		~FBFriends();
-		FBFriends(const FBFriends& other);
+		~FBFriends();													//done
+		FBFriends(const FBFriends& other);								//done
 		void operator = (const FBFriends& other);
 
 		// Functions for the internal iterator
@@ -32,15 +32,15 @@ class FBFriends
 		void advance();
 		bool is_item();
 		Friend current();
-		void remove_current();
-		void insert(const Friend& f);
+		void remove_current(const Friend& target);
+		void insert(const Friend& f);									//done
 		void attach(const Friend& f);
-		void show_all(std::ostream& outs)const;
+		void show_all(std::ostream& outs)const;							//done
 		void bday_sort();
-		Friend find_friend(const std::string& name)const;
+		Friend find_friend(const std::string& name)const;				//done
 		bool is_friend(const Friend& f) const;
-		void load(std::istream& ins);
-		void save(std::ostream& outs);
+		void load(std::istream& ins);									//done
+		void save(std::ostream& outs);									//done
 
 	private:
 		void resize(); // increases the capacity of the container by 5

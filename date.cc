@@ -102,6 +102,7 @@ istream& operator >> (istream& ins, Date& d)
 	{  
 		ins.ignore();
 		ins >> d.year;
+		getline(ins, junk);
 		return ins;
 	}
 }

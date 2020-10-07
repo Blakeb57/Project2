@@ -21,6 +21,10 @@ std::string Friend::get_name()const
     return this->name;
 }
 
+void Friend::set_bday(const Date d)
+{
+    this->bday = d;
+}
 
 Date Friend::get_bday()const
 {
@@ -46,6 +50,9 @@ void Friend::input(std::istream& ins)
 
     getline(ins, line);
         this->name = line;
+    cout << name << endl;
+    ins >> this->bday;
+    cout << bday << endl;
 
 }
 
@@ -62,10 +69,8 @@ std::istream& operator >> (std::istream& ins, Friend& f)
     string line;
 
     cout << "-Please enter in friend's name: ";
-    getline(ins, line);
-        f.set_name(line);
-
-    return ins;
+    ins >> line;
+    f.set_name(line);
 }
 
 

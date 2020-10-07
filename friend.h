@@ -21,6 +21,7 @@ class Friend
 		Friend();
 		void set_name(const std::string& sn);
 		std::string get_name()const;
+		void set_bday(const Date d);
 		Date get_bday()const;
 		bool operator == (const Friend& other)const;
 		bool operator != (const Friend& other)const;

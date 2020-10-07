@@ -7,7 +7,10 @@ using namespace std;
 
 FBFriends::FBFriends()
 {
-
+    data = new Friend[5];
+    capacity = 5;
+    used = 0;
+    current_index = 0;
 }
 
 FBFriends::~FBFriends()
@@ -42,34 +45,51 @@ void FBFriends::operator = (const FBFriends& other)
 
 void FBFriends::start() 
 {
-
+    current_index = 0;
 }
 
 void FBFriends::advance()
 {
-
+    ++current_index;
 }
 
 bool FBFriends::is_item()
 {
-
+    current_index < used;
 }
 
 Friend FBFriends::current()
 {
-
+    return data[current_index];
 }
 
-void FBFriends::remove_current()
+void FBFriends::remove_current(const Friend& target)
 {
-
+    int index = 0;
+    int many_removed = 0;
+    while (index < used)
+    {
+        if (data[index] == target)
+        {
+            --used;
+            data[index] = data[used];
+            ++many_removed;
+        }else{
+            ++index;
+        }
+    }
 }
 
 void FBFriends::insert(const Friend& f)
 {
     if(used < capacity)
     {
-                                            //fill in the rest of this if statement
+        data[used].set_name(f.get_name());
+        data[used].set_bday(f.get_bday());
+        ++used;
+    }else{
+        this->resize();
+        this->insert(f);
     }
 }
 
@@ -82,14 +102,30 @@ void FBFriends::show_all(std::ostream& outs)const
 {
     for(int i = 0; i < used; ++i)
     {
-
+        outs << data[i].get_name() << endl;
     }
-    
 }
 
 void FBFriends::bday_sort()
 {
+    bool done = false;
+    int j;
+    Friend myfriend;
+    while(!done)
+	{
+		done = true;
 
+		for(j = used -1; j > 0; --j)
+		{
+	    	if(data[j].get_bday() > data[j-1].get_bday())
+			{
+				done = false;
+				myfriend = data[j];
+				data[j] = data[j-1];
+				data[j-1] = myfriend;
+	   		}
+		}
+    }
 }
 
 Friend FBFriends::find_friend(const std::string& name)const
@@ -105,7 +141,11 @@ Friend FBFriends::find_friend(const std::string& name)const
 
 bool FBFriends::is_friend(const Friend& f)const
 {
-
+    Friend myfriend;
+    for(int i = 0; i < current_index; ++i)
+    {
+        
+    }
 }
 
 void FBFriends::load(std::istream& ins)
@@ -115,17 +155,24 @@ void FBFriends::load(std::istream& ins)
     while(!ins.eof())
     {
         myfriend.input(ins);        
-        data[used] = myfriend;
-        used++;
+        this->insert(myfriend);
     }
 }
 
 void FBFriends::save(std::ostream& outs)
 {
-    return;
-}
+    for(int current_index = 0; current_index < used; ++current_index)
+    {
+        this->data[current_index].output(outs);
+    }
+} 
 
 void FBFriends::resize()
 {
-
+	Friend *tmp;
+	tmp = new Friend[capacity+5];
+	std::copy(data, data+used, tmp);
+	delete [] data;
+	capacity += 5;
+	data = tmp;
 }
