@@ -20,6 +20,7 @@ FBFriends::~FBFriends()
 
 FBFriends::FBFriends(const FBFriends& other)
 {
+    /*
     Friend *new_data;
     if(this == &other)
     {
@@ -29,18 +30,34 @@ FBFriends::FBFriends(const FBFriends& other)
     if(capacity != other.capacity)
     {
         new_data = new Friend[other.capacity];
-        delete [] data;
         data = new_data;
         capacity = other.capacity;
     }
+    */
 
+    capacity = other.capacity;
     used = other.used;
+    current_index = other.current_index;
+    data = new Friend[capacity];
     copy(other.data, other.data + used, data);
 }
 
 void FBFriends::operator = (const FBFriends& other)
 {
+    Friend *new_data;
+    if(&other == this)
+    {
+        return;
+    }
 
+    if(capacity != other.capacity)
+    {
+        new_data = new Friend[other.capacity];
+        data = new_data;
+        capacity = other.capacity;
+    }
+    used = other.used;
+    copy(other.data, other.data + used, data);
 }
 
 void FBFriends::start() 
@@ -65,23 +82,19 @@ Friend FBFriends::current()
 
 void FBFriends::remove_current(const Friend& target)
 {
-    int index = 0;
-    int many_removed = 0;
-    while (index < used)
+    if(is_item())
     {
-        if (data[index] == target)
+        for(int i = current_index; i < used; ++i)
         {
-            --used;
-            data[index] = data[used];
-            ++many_removed;
-        }else{
-            ++index;
+            data[i] = data[i + 1];
         }
+        used--;
     }
 }
 
 void FBFriends::insert(const Friend& f)
 {
+    
     if(used < capacity)
     {
         data[used].set_name(f.get_name());
@@ -95,7 +108,23 @@ void FBFriends::insert(const Friend& f)
 
 void FBFriends::attach(const Friend& f)
 {
+    if(used == capacity)
+    {
+        resize();
+    }
 
+    if(!is_item())
+    {
+        data[used] = f;
+        used ++;
+    }else{
+        for(int i = used; i > current_index + 1; --i)
+        {
+            data[i] = data[i - 1];
+        }
+        data[current_index + 1] = f;
+        current_index ++;
+    }
 }
 
 void FBFriends::show_all(std::ostream& outs)const
